@@ -2,20 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+.page-container {
+  @apply min-h-screen content-center bg-gradient-to-br from-purple-500 to-purple-900;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.section-container {
+  @apply max-w-5xl mx-auto flex flex-col gap-3 items-center text-slate-900
 }
