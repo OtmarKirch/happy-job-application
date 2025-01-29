@@ -1,11 +1,30 @@
+import {db} from '@/db'
+
 export default function CreateApplication() {
+
     async function createApplication(formData: FormData) {
         'use server'
+        
 
         const company = formData.get("company") as string;
         const jobTitle = formData.get("jobTitle") as string;
+        const jobDescription = formData.get("jobDescription") as string;
+        const mainContact = formData.get("mainContact") as string;
+        const mainContactEmail = formData.get("mainContactEmail") as string;
+        const applicationDate = formData.get("applicationDate") as string;
+        const followupDate = formData.get("followupDate") as string;
+        const applicationStatus = formData.get("applicationStatus") as string;
 
-        console.log(company + jobTitle)
+        await db.application.create({
+            data: {
+                company,
+                jobTitle,
+                applicationStatus
+            }
+        })
+        .then(()=> console.log("Successfully created application"))
+        .catch((e)=> console.log('Application could not be saved: ' + e))
+        
 
 
     }
@@ -14,6 +33,7 @@ export default function CreateApplication() {
         <div className="page-container">
             <div className="section-container">
                 <h2 className="font-bold text-xl">Create Application</h2>
+                
                 <form
                     action={createApplication}
                     className="flex flex-col gap-4 md:gap-3"
@@ -44,28 +64,28 @@ export default function CreateApplication() {
                         />
                     </div>
                     <div className="flex flex-col md:flex-row md:items-center gap-3">
-                        <label htmlFor="contact">Contact</label>
+                        <label htmlFor="mainContact">Main contact</label>
                         <input
-                            name="contact"
-                            id="contact"
+                            name="mainContact"
+                            id="mainContact"
                             type="text"
                             className="p-2 focus:outline-none caret-slate-800 bg-slate-300 border-2 border-slate-500 hover:border-slate-800"
                         />
                     </div>
                     <div className="flex flex-col md:flex-row md:items-center gap-3">
-                        <label htmlFor="contactEmail">Contact email</label>
+                        <label htmlFor="mainContactEmail">Main contact email</label>
                         <input
-                            name="contactEmail"
-                            id="contactEmail"
+                            name="mainContactEmail"
+                            id="mainContactEmail"
                             type="email"
                             className="p-2 focus:outline-none caret-slate-800 bg-slate-300 border-2 border-slate-500 hover:border-slate-800"
                         />
                     </div>
                     <div className="flex flex-col md:flex-row md:items-center gap-3">
-                        <label htmlFor="dateApplied">Date of application sent</label>
+                        <label htmlFor="applicationDate">Date of application sent</label>
                         <input
-                            name="dateApplied"
-                            id="dateApplied"
+                            name="applicationDate"
+                            id="applicationDate"
                             type="date"
                             className="p-2 focus:outline-none caret-slate-800 bg-slate-300 border-2 border-slate-500 hover:border-slate-800"
                         />
@@ -80,10 +100,10 @@ export default function CreateApplication() {
                         />
                     </div>
                     <div className="flex flex-col md:flex-row md:items-center gap-3">
-                        <label htmlFor="statusApplication">Status of application</label>
+                        <label htmlFor="applicationStatus">Status of application</label>
                         <input
-                            name="statusApplication"
-                            id="statusApplication"
+                            name="applicationStatus"
+                            id="applicationStatus"
                             type="text"
                             className="p-2 focus:outline-none caret-slate-800 bg-slate-300 border-2 border-slate-500 hover:border-slate-800"
                         />

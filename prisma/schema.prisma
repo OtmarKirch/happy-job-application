@@ -10,14 +10,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model application {
+model Application {
   id                    Int @id @default(autoincrement())
   company               String
   jobTitle              String
   jobDescription        String?
   mainContact           String?
   mainContactEmail      String?
-  dateOfApplicationSent DateTime?
-  dateOfFollowUp        DateTime?
-  statusOfApplication   String
+  applicationDate       DateTime?
+  followupDate          DateTime?
+  applicationStatus     String
 }
