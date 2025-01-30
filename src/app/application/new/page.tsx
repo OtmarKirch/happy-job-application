@@ -1,11 +1,11 @@
-import {db} from '@/db'
+'use client'
+
+import * as actions from '@/actions'
 
 export default function CreateApplication() {
 
     async function createApplication(formData: FormData) {
-        'use server'
         
-
         const company = formData.get("company") as string;
         const jobTitle = formData.get("jobTitle") as string;
         const jobDescription = formData.get("jobDescription") as string;
@@ -15,17 +15,17 @@ export default function CreateApplication() {
         const followupDate = formData.get("followupDate") as string;
         const applicationStatus = formData.get("applicationStatus") as string;
 
-        await db.application.create({
-            data: {
-                company,
-                jobTitle,
-                applicationStatus
-            }
-        })
+        const applicationProps = {
+            company,
+            jobTitle,
+            applicationStatus
+        }
+    
+
+        actions.createApplicationEntry(applicationProps)
         .then(()=> console.log("Successfully created application"))
         .catch((e)=> console.log('Application could not be saved: ' + e))
         
-
 
     }
 
