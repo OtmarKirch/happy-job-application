@@ -50,3 +50,19 @@ export async function getApplicationById(id: number){
         throw e
     }
 }
+
+export async function getAllApplicationIds() {
+    'use server'
+
+    try {
+        const applicationIds = await db.application.findMany({
+            select: {
+                id: true
+            }
+        });
+        return applicationIds.map(app => app.id);
+    } catch (e) {
+        console.log("Could not find application IDs: " + e);
+        throw e;
+    }
+}
