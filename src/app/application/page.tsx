@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { getAllApplicationIds } from '@/actions'
 import ApplicationItem from '@/components/applicationItem'
 
-export default function Application(){
+export default function Application() {
     const [applicationIds, setApplicationIds] = useState<number[] | null>(null)
 
     useEffect(() => {
@@ -22,17 +22,19 @@ export default function Application(){
     }, [])
 
 
-    return(
+    return (
         <div className="page-container">
-            {applicationIds ? (
-                applicationIds.map(id => (
-                    <ApplicationItem key={id} id={id} />
-                ))
-            ) : (
-                <p>Loading...</p>
-            )
-        
-        }
+            <div className="section-container">
+                {applicationIds ? (
+                    applicationIds.map(id => (
+                        <ApplicationItem key={id} id={id} />
+                    ))
+                ) : (
+                    <p>Loading...</p>
+                )
+
+                }
+            </div>
         </div>
     )
 }
