@@ -1,10 +1,12 @@
 'use client'
 
+import { useActionState } from 'react';
 import * as actions from '@/actions'
 
 export default function CreateApplication() {
+    const [formState, action] = useActionState(actions.testMessage, {message: ''})
 
-    async function createApplication(formData: FormData) {
+    /* async function createApplication(formData: FormData) {
         
         const company = formData.get("company") as string;
         const jobTitle = formData.get("jobTitle") as string;
@@ -21,13 +23,12 @@ export default function CreateApplication() {
             applicationStatus
         }
     
-
-        actions.createApplicationEntry(applicationProps)
-        .then(()=> console.log("Successfully created application"))
-        .catch((e)=> console.log('Application could not be saved: ' + e))
+        // actions.createApplicationEntry(applicationProps)
+        // .then(()=> console.log("Successfully created application"))
+        // .catch((e)=> console.log('Application could not be saved: ' + e))
         
 
-    }
+    } */
 
     return (
         <div className="page-container">
@@ -35,7 +36,7 @@ export default function CreateApplication() {
                 <h2 className="font-bold text-xl">Create Application</h2>
                 
                 <form
-                    action={createApplication}
+                    action={action}
                     className="flex flex-col gap-4 md:gap-3"
                 >
                     <div className="flex flex-col md:flex-row md:items-center gap-3">
@@ -43,7 +44,7 @@ export default function CreateApplication() {
                         <input
                             name="company"
                             type="text"
-                            className="p-2 focus:outline-none caret-slate-800 bg-slate-300 border-2 border-slate-500 hover:border-slate-800"
+                            className="p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
                     <div className="flex flex-col md:flex-row md:items-center gap-3">
@@ -52,7 +53,7 @@ export default function CreateApplication() {
                             name="jobTitle"
                             id="jobTitle"
                             type="text"
-                            className="p-2 focus:outline-none caret-slate-800 bg-slate-300 border-2 border-slate-500 hover:border-slate-800"
+                            className="p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
                     <div className="flex flex-col md:flex-row md:items-center gap-3">
@@ -60,7 +61,7 @@ export default function CreateApplication() {
                         <textarea
                             name="jobDescription"
                             id="jobDescription"
-                            className="p-2 focus:outline-none caret-slate-800 bg-slate-300 border-2 border-slate-500 hover:border-slate-800"
+                            className="p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
                     <div className="flex flex-col md:flex-row md:items-center gap-3">
@@ -69,7 +70,7 @@ export default function CreateApplication() {
                             name="mainContact"
                             id="mainContact"
                             type="text"
-                            className="p-2 focus:outline-none caret-slate-800 bg-slate-300 border-2 border-slate-500 hover:border-slate-800"
+                            className="p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
                     <div className="flex flex-col md:flex-row md:items-center gap-3">
@@ -78,7 +79,7 @@ export default function CreateApplication() {
                             name="mainContactEmail"
                             id="mainContactEmail"
                             type="email"
-                            className="p-2 focus:outline-none caret-slate-800 bg-slate-300 border-2 border-slate-500 hover:border-slate-800"
+                            className="p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
                     <div className="flex flex-col md:flex-row md:items-center gap-3">
@@ -87,7 +88,7 @@ export default function CreateApplication() {
                             name="applicationDate"
                             id="applicationDate"
                             type="date"
-                            className="p-2 focus:outline-none caret-slate-800 bg-slate-300 border-2 border-slate-500 hover:border-slate-800"
+                            className="p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
                     <div className="flex flex-col md:flex-row md:items-center gap-3">
@@ -96,7 +97,7 @@ export default function CreateApplication() {
                             name="followupDate"
                             id="followupDate"
                             type="date"
-                            className="p-2 focus:outline-none caret-slate-800 bg-slate-300 border-2 border-slate-500 hover:border-slate-800"
+                            className="p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
                     <div className="flex flex-col md:flex-row md:items-center gap-3">
@@ -105,9 +106,12 @@ export default function CreateApplication() {
                             name="applicationStatus"
                             id="applicationStatus"
                             type="text"
-                            className="p-2 focus:outline-none caret-slate-800 bg-slate-300 border-2 border-slate-500 hover:border-slate-800"
+                            className="p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
+
+                    <div>{formState.message}</div>
+
                     <button type="submit">Create application</button>
                 </form>
             </div>

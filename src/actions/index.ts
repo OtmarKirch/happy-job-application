@@ -9,7 +9,6 @@ interface applicationData {
 }
 
 export async function createApplicationEntry(data: applicationData) {
-    'use server'
   
     await db.application.create({
         data: {
@@ -24,7 +23,6 @@ export async function createApplicationEntry(data: applicationData) {
 }
 
 export async function getAllApplicationEntries(){
-    'use server'
 
     try {
         const applications = await db.application.findMany();
@@ -36,7 +34,6 @@ export async function getAllApplicationEntries(){
 }
 
 export async function getApplicationById(id: number){
-    'use server'
 
     try {
         const application = await db.application.findFirst({
@@ -65,4 +62,8 @@ export async function getAllApplicationIds() {
         console.log("Could not find application IDs: " + e);
         throw e;
     }
+}
+
+export async function testMessage() {
+    return { message: "This is a test message!"}
 }
