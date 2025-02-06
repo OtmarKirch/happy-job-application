@@ -33,86 +33,89 @@ export default function CreateApplication() {
     return (
         <div className="page-container">
             <div className="section-container">
-                <h2 className="font-bold text-xl">Create Application</h2>
+                <h2 className="font-bold text-4xl">Create Application</h2>
                 
                 <form
                     action={action}
-                    className="flex flex-col gap-4 md:gap-3"
+                    className="flex flex-col gap-4 md:gap-3 border-2 border-slate-500 p-3"
                 >
-                    <div className="flex flex-col md:flex-row md:items-center gap-3">
-                        <label htmlFor="company">Company</label>
+                    <div className="flex flex-col md:grid md:grid-cols-2 md:items-center gap-3">
+                        <label htmlFor="company" className="text-right col-span-1">Company</label>
                         <input
                             name="company"
                             type="text"
-                            className="p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
+                            className="col-span-1 col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-400 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
-                    <div className="flex flex-col md:flex-row md:items-center gap-3">
-                        <label htmlFor="jobTitle">Job title</label>
+                    <div className="flex flex-col md:grid md:grid-cols-2 md:items-center gap-3">
+                        <label htmlFor="jobTitle" className="text-right col-span-1">Job title</label>
                         <input
                             name="jobTitle"
                             id="jobTitle"
                             type="text"
-                            className="p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
+                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-400 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
-                    <div className="flex flex-col md:flex-row md:items-center gap-3">
-                        <label htmlFor="jobDescription">Job description</label>
+                    <div className="flex flex-col md:grid md:grid-cols-2 md:items-center gap-3">
+                        <label htmlFor="jobDescription" className="text-right col-span-1">Job description</label>
                         <textarea
                             name="jobDescription"
                             id="jobDescription"
-                            className="p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
+                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-400 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
-                    <div className="flex flex-col md:flex-row md:items-center gap-3">
-                        <label htmlFor="mainContact">Main contact</label>
+                    <div className="flex flex-col md:grid md:grid-cols-2 md:items-center gap-3">
+                        <label htmlFor="mainContact" className="text-right col-span-1">Main contact</label>
                         <input
                             name="mainContact"
                             id="mainContact"
                             type="text"
-                            className="p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
+                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-400 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
-                    <div className="flex flex-col md:flex-row md:items-center gap-3">
-                        <label htmlFor="mainContactEmail">Main contact email</label>
+                    <div className="flex flex-col md:grid md:grid-cols-2 md:items-center gap-3">
+                        <label htmlFor="mainContactEmail" className="text-right col-span-1">Main contact email</label>
                         <input
                             name="mainContactEmail"
                             id="mainContactEmail"
                             type="email"
-                            className="p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
+                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-400 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
-                    <div className="flex flex-col md:flex-row md:items-center gap-3">
-                        <label htmlFor="applicationDate">Date of application sent</label>
+                    <div className="flex flex-col md:grid md:grid-cols-2 md:items-center gap-3">
+                        <label htmlFor="applicationDate" className="text-right col-span-1">Date of application sent</label>
                         <input
                             name="applicationDate"
                             id="applicationDate"
                             type="date"
-                            className="p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
+                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-400 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
-                    <div className="flex flex-col md:flex-row md:items-center gap-3">
-                        <label htmlFor="followupDate">Date of follow up</label>
+                    <div className="flex flex-col md:grid md:grid-cols-2 md:items-center gap-3">
+                        <label htmlFor="followupDate" className="text-right col-span-1">Date of follow up</label>
                         <input
                             name="followupDate"
                             id="followupDate"
                             type="date"
-                            className="p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
+                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-400 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
-                    <div className="flex flex-col md:flex-row md:items-center gap-3">
-                        <label htmlFor="applicationStatus">Status of application</label>
+                    <div className="flex flex-col md:grid md:grid-cols-2 md:items-center gap-3">
+                        <label htmlFor="applicationStatus" className="text-right col-span-1">Status of application</label>
                         <input
                             name="applicationStatus"
                             id="applicationStatus"
                             type="text"
-                            className="p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
+                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-400 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
 
                     <div>{formState.message}</div>
 
-                    <button type="submit">Create application</button>
+                    <button 
+                    type="submit"
+                    className="m-3 border-2 border-slate-500 p-3 bg-gradient-to-br from-slate-500 to-slate-700 hover:outline outline-4 outline-offset-4 outline-slate-800 "
+                    >Create application</button>
                 </form>
             </div>
         </div>
