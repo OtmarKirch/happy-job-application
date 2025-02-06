@@ -9,6 +9,19 @@ interface applicationData {
 }
 
 export async function createApplicationEntry(data: applicationData) {
+
+    //form data validation
+    if (typeof data.company !== "string" || !/^[a-zA-Z\s]+$/.test(data.company) || data.company.length < 3){
+        return { message: "Company name must be longer"}
+    }
+
+    if (typeof data.jobTitle !== "string" || !/^[a-zA-Z\s]+$/.test(data.jobTitle) || data.jobTitle.length < 3){
+        return { message: "Job title must be longer"}
+    }
+
+    if (typeof data.applicationStatus !== "string" || !/^[a-zA-Z\s]+$/.test(data.applicationStatus) || data.applicationStatus.length < 3){
+        return { message: "Application status must be longer"}
+    }
   
     await db.application.create({
         data: {
@@ -17,9 +30,10 @@ export async function createApplicationEntry(data: applicationData) {
             applicationStatus: data.applicationStatus
         }
     })
-    .then(()=> console.log("Successfully created application"))
+    .then(()=> {console.log("Successfully created application");})
     .catch((e)=> console.log('Application could not be saved: ' + e))
 
+    return { message: "Successfully created application!"}
 }
 
 export async function getAllApplicationEntries(){

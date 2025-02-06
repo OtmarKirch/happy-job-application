@@ -1,34 +1,32 @@
 'use client'
 
-import { useActionState } from 'react';
+import { useState, useActionState, startTransition } from 'react';
 import * as actions from '@/actions'
 
 export default function CreateApplication() {
-    const [formState, action] = useActionState(actions.testMessage, {message: ''})
+    const [formState, setFormState] = useState({message: ''})
 
-    /* async function createApplication(formData: FormData) {
-        
-        const company = formData.get("company") as string;
-        const jobTitle = formData.get("jobTitle") as string;
-        const jobDescription = formData.get("jobDescription") as string;
-        const mainContact = formData.get("mainContact") as string;
-        const mainContactEmail = formData.get("mainContactEmail") as string;
-        const applicationDate = formData.get("applicationDate") as string;
-        const followupDate = formData.get("followupDate") as string;
-        const applicationStatus = formData.get("applicationStatus") as string;
 
-        const applicationProps = {
-            company,
-            jobTitle,
-            applicationStatus
-        }
-    
-        // actions.createApplicationEntry(applicationProps)
-        // .then(()=> console.log("Successfully created application"))
-        // .catch((e)=> console.log('Application could not be saved: ' + e))
-        
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>){
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
 
-    } */
+        const applicationData = {
+            company: formData.get("company") as string,
+            jobTitle: formData.get("jobTitle") as string,
+            jobDescription: formData.get("jobDescription") as string,
+            mainContact: formData.get("mainContact") as string,
+            mainContactEmail: formData.get("mainContactEmail") as string,
+            applicationDate: formData.get("applicationDate") as string,
+            followupDate: formData.get("followupDate") as string,
+            applicationStatus: formData.get("applicationStatus") as string,
+        };
+
+        startTransition(async () => {
+            const result = await actions.createApplicationEntry(applicationData);
+            setFormState(result);
+        });
+    }
 
     return (
         <div className="page-container">
@@ -36,7 +34,7 @@ export default function CreateApplication() {
                 <h2 className="font-bold text-4xl">Create Application</h2>
                 
                 <form
-                    action={action}
+                    onSubmit={handleSubmit}
                     className="flex flex-col gap-4 md:gap-3 border-2 border-slate-500 p-3"
                 >
                     <div className="flex flex-col md:grid md:grid-cols-2 md:items-center gap-3">
@@ -44,7 +42,7 @@ export default function CreateApplication() {
                         <input
                             name="company"
                             type="text"
-                            className="col-span-1 col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-400 border-2 border-slate-500 hover:border-slate-700"
+                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
                     <div className="flex flex-col md:grid md:grid-cols-2 md:items-center gap-3">
@@ -53,7 +51,7 @@ export default function CreateApplication() {
                             name="jobTitle"
                             id="jobTitle"
                             type="text"
-                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-400 border-2 border-slate-500 hover:border-slate-700"
+                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
                     <div className="flex flex-col md:grid md:grid-cols-2 md:items-center gap-3">
@@ -61,7 +59,7 @@ export default function CreateApplication() {
                         <textarea
                             name="jobDescription"
                             id="jobDescription"
-                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-400 border-2 border-slate-500 hover:border-slate-700"
+                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
                     <div className="flex flex-col md:grid md:grid-cols-2 md:items-center gap-3">
@@ -70,7 +68,7 @@ export default function CreateApplication() {
                             name="mainContact"
                             id="mainContact"
                             type="text"
-                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-400 border-2 border-slate-500 hover:border-slate-700"
+                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
                     <div className="flex flex-col md:grid md:grid-cols-2 md:items-center gap-3">
@@ -79,7 +77,7 @@ export default function CreateApplication() {
                             name="mainContactEmail"
                             id="mainContactEmail"
                             type="email"
-                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-400 border-2 border-slate-500 hover:border-slate-700"
+                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
                     <div className="flex flex-col md:grid md:grid-cols-2 md:items-center gap-3">
@@ -88,7 +86,7 @@ export default function CreateApplication() {
                             name="applicationDate"
                             id="applicationDate"
                             type="date"
-                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-400 border-2 border-slate-500 hover:border-slate-700"
+                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
                     <div className="flex flex-col md:grid md:grid-cols-2 md:items-center gap-3">
@@ -97,7 +95,7 @@ export default function CreateApplication() {
                             name="followupDate"
                             id="followupDate"
                             type="date"
-                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-400 border-2 border-slate-500 hover:border-slate-700"
+                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
                     <div className="flex flex-col md:grid md:grid-cols-2 md:items-center gap-3">
@@ -106,11 +104,11 @@ export default function CreateApplication() {
                             name="applicationStatus"
                             id="applicationStatus"
                             type="text"
-                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-400 border-2 border-slate-500 hover:border-slate-700"
+                            className="col-span-1 p-2 focus:outline-none caret-slate-700 bg-slate-300 border-2 border-slate-500 hover:border-slate-700"
                         />
                     </div>
 
-                    <div>{formState.message}</div>
+                    <div className="self-center text-green-700 font-bold">{formState.message}</div>
 
                     <button 
                     type="submit"
