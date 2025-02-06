@@ -107,7 +107,18 @@ export default function CreateApplication() {
                         />
                     </div>
 
-                    <div className="self-center text-green-700 font-bold">{formState.message}</div>
+                    <div className="self-center text-yellow-300 font-bold">
+                    {formState.message && (
+                    <p>
+                        {formState.message.split('\n').map((line, index) => (
+                            <span key={index}>
+                                {line}
+                                <br />
+                            </span>
+                        ))}
+                    </p>
+                )}
+                    </div>
 
                     <button 
                     type="submit"
