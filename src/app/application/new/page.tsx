@@ -1,17 +1,17 @@
 'use client'
 
-import { useState, useActionState, startTransition } from 'react';
+import {useActionState, startTransition } from 'react';
 import * as actions from '@/actions'
 
 export default function CreateApplication() {
-    const [formState, setFormState] = useState({message: ''})
+    const [formState, action] = useActionState(actions.createApplicationEntry, {message: ''})
 
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
 
-        const applicationData = {
+        /* const applicationData = {
             company: formData.get("company") as string,
             jobTitle: formData.get("jobTitle") as string,
             jobDescription: formData.get("jobDescription") as string,
@@ -20,11 +20,10 @@ export default function CreateApplication() {
             applicationDate: formData.get("applicationDate") as string,
             followupDate: formData.get("followupDate") as string,
             applicationStatus: formData.get("applicationStatus") as string,
-        };
+        }; */
 
-        startTransition(async () => {
-            const result = await actions.createApplicationEntry(applicationData);
-            setFormState(result);
+        startTransition(() => {
+            action(formData);
         });
     }
 

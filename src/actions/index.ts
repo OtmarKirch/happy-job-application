@@ -2,32 +2,30 @@
 
 import { db } from '@/db'
 
-interface applicationData {
-    company: string,
-    jobTitle: string,
-    applicationStatus: string
-}
+export async function createApplicationEntry(formState: {message: string}, data: FormData) {
 
-export async function createApplicationEntry(data: applicationData) {
-
+    const company = data.get("company")
+    const jobTitle = data.get("jobTitle")
+    const applicationStatus = data.get("applicationStatus")
+    
     //form data validation
-    if (typeof data.company !== "string" || !/^[a-zA-Z\s]+$/.test(data.company) || data.company.length < 3){
+    if (typeof company !== "string" || !/^[a-zA-Z\s]+$/.test(company) || company.length < 3){
         return { message: "Company name must be longer"}
     }
 
-    if (typeof data.jobTitle !== "string" || !/^[a-zA-Z\s]+$/.test(data.jobTitle) || data.jobTitle.length < 3){
+    if (typeof jobTitle !== "string" || !/^[a-zA-Z\s]+$/.test(jobTitle) || jobTitle.length < 3){
         return { message: "Job title must be longer"}
     }
 
-    if (typeof data.applicationStatus !== "string" || !/^[a-zA-Z\s]+$/.test(data.applicationStatus) || data.applicationStatus.length < 3){
+    if (typeof applicationStatus !== "string" || !/^[a-zA-Z\s]+$/.test(applicationStatus) || applicationStatus.length < 3){
         return { message: "Application status must be longer"}
     }
   
     await db.application.create({
         data: {
-            company: data.company,
-            jobTitle: data.jobTitle,
-            applicationStatus: data.applicationStatus
+            company: company,
+            jobTitle: jobTitle,
+            applicationStatus: applicationStatus
         }
     })
     .then(()=> {console.log("Successfully created application");})
@@ -80,4 +78,8 @@ export async function getAllApplicationIds() {
 
 export async function testMessage() {
     return { message: "This is a test message!"}
+}
+
+export async function testMessageString(str: string) {
+    return { message: "This string was sent: " + str}
 }
