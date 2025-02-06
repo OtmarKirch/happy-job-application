@@ -22,10 +22,10 @@ export async function createApplicationEntry(formState: {message: string}, data:
     if (typeof jobTitle !== "string" || jobTitle.length < 3) {
         message += "Job title must be longer\n";
     }
-    if (typeof jobDescription !== "string" || !/^$|^.{10,}|.{0}$/.test(jobDescription)) {
+    if (typeof jobDescription !== "string" || !/^$|^.{10}/.test(jobDescription)) {
         message += "Job description must be longer\n";
     }
-    if (typeof mainContact !== "string" || !/^$|^.{5,}|.{0}$/.test(mainContact)) {
+    if (typeof mainContact !== "string" || !/^$|^.{5}/.test(mainContact)) {
         message += "Main contact name must be longer\n";
     }
     if (typeof mainContactEmail !== "string" || !/^$|^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(mainContactEmail)) {
@@ -37,7 +37,7 @@ export async function createApplicationEntry(formState: {message: string}, data:
     if (typeof followupDate !== "string" || !/^$|^\d{4}-\d{2}-\d{2}$/.test(followupDate)) {
         message += "Followup date must be a correct date\n";
     }
-    if (typeof applicationStatus !== "string" || !/^.{5,}/.test(applicationStatus)) {
+    if (typeof applicationStatus !== "string" || !/^.{5}/.test(applicationStatus)) {
         message += "Application status must be a correct\n";
     }
 
