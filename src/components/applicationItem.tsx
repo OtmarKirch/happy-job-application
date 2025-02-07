@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { getApplicationById } from '@/actions';
+import Link from "next/link";
 
 interface ItemProps {
     id: number;
@@ -19,6 +20,7 @@ export default function ApplicationItem(props: ItemProps) {
         followupDate: Date | null;
         applicationStatus: string;
     }>(null);
+    const [detailLink, setDetailLink] = useState(`/application/${props.id}`)
 
     useEffect(() => {
         async function fetchData() {
@@ -69,7 +71,9 @@ export default function ApplicationItem(props: ItemProps) {
                         <p className="col-span-1 text-right">Status:</p>
                         <p className="col-span-2">{applicationData.applicationStatus}</p>
                     </div>
-                   
+                    <div className="flex flex-row justify-center">
+                        <Link className="px-4 m-2 border-2 border-slate-600 hover:text-green-600 hover:border-green-600" href={detailLink}>Details</Link>
+                    </div>
                 </div>
             ) : (
                 <p>Loading...</p>
