@@ -14,7 +14,6 @@ export default function SingleApplication(props: singleApplicationProps) {
     return (
         <div className="page-container">
             <div className="section-container">
-                <h1>{id}</h1>
                 
                     <ApplicationDetails
                     key={id}
