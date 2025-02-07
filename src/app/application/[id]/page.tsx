@@ -1,4 +1,5 @@
-import * as actions from "@/actions"
+
+import ApplicationDetails from "@/components/applicationDetails";
 
 interface singleApplicationProps {
     params: {
@@ -6,26 +7,21 @@ interface singleApplicationProps {
     }
 }
 
-export default async function SingleApplication (props: singleApplicationProps){
+export default function SingleApplication(props: singleApplicationProps) {
+    const id = parseInt(props.params.id)
 
-    const application = await actions.getApplicationById(parseInt(props.params.id))
-
-    if (!application) {
-        return(
-            <div ></div>
-        )
-    }
 
     return (
-        <div>
-        <h1>{props.params.id}</h1>
-        { application ? (
-            <div>{application.company}</div>
-        ) : (
-            <div>There is no application with that id number</div>
-        )
-        
-    }
+        <div className="page-container">
+            <div className="section-container">
+                <h1>{id}</h1>
+                
+                    <ApplicationDetails
+                    key={id}
+                    id={id}
+                    />
+                
+            </div>
         </div>
     )
 }
