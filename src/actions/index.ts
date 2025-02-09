@@ -109,6 +109,15 @@ export async function getAllApplicationIds() {
     }
 }
 
+export async function editApplicationById(id: number){
+    'use server'
+    if (typeof id == 'number'){
+    return "Dummy edit application function executed."
+    } else {
+        return "id must be a number!"
+    }
+}
+
 export async function testMessage() {
     return "This is a test message!" 
 }
