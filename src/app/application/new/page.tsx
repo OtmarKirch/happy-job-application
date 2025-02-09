@@ -11,17 +11,6 @@ export default function CreateApplication() {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
 
-        /* const applicationData = {
-            company: formData.get("company") as string,
-            jobTitle: formData.get("jobTitle") as string,
-            jobDescription: formData.get("jobDescription") as string,
-            mainContact: formData.get("mainContact") as string,
-            mainContactEmail: formData.get("mainContactEmail") as string,
-            applicationDate: formData.get("applicationDate") as string,
-            followupDate: formData.get("followupDate") as string,
-            applicationStatus: formData.get("applicationStatus") as string,
-        }; */
-
         startTransition(() => {
             action(formData);
         });
