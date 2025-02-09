@@ -24,7 +24,7 @@ export default function Application() {
 
     return (
         <div className="page-container">
-            <div className="section-container">
+            <div className="section-container mt-3">
                 {applicationIds ? (
                     applicationIds.map(id => (
                         <ApplicationItem key={id} id={id} />
